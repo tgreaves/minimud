@@ -1,0 +1,10 @@
+
+Welcome to MiniMUD!
+Created by Tristan Greaves (tmg296)
+
+This is a demonstration of a multiple client serving Multi User Dungeon (MUD),
+implemented with Java under a Linux environment.
+
+Created for the 1998 CM214 (Comms & Nets) assignment.
+
+ 

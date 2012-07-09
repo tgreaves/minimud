@@ -1,0 +1,3 @@
+
+ Make sure objects are dropped when a player quits / loses connection !
+

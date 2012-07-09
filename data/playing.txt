@@ -1,0 +1,20 @@
+
+-----------------------------------------------------------------------------
+
+                            Welcome to MiniMUD!
+
+               You are able to do the following right now:
+
+	    north, east, south, west -- movement!
+
+	    emote <emotion> -- "Emote" to a room.
+            help            -- Display this text.
+            look            -- Get a description of your location.
+            say <message>   -- Speak to everyone in your location.
+            shout <message> -- Shout to everyone on the MUD.
+            user <name>     -- Change your name on the MUD.
+            who             -- List the players on the MUD.
+	    quit            -- Quit the game.
+
+-----------------------------------------------------------------------------
+
