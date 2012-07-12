@@ -17,7 +17,7 @@ public class Connection extends Thread {
 	protected Socket client;
 
 	/** Where we receive input from the player's terminal */
-	protected DataInputStream in;
+	protected BufferedReader in;
 
 	/** Where we send output to go to the player's terminal */
 	protected PrintStream out;
@@ -56,25 +56,27 @@ public class Connection extends Thread {
 	}
 
 	/** Initialize the input and output streams to the socket and
-         *  start the thread.
-         *
-         *  @param client_socket The socket where the new client is.
-         *  @param con The almighty controller.
-         */
+	 *  start the thread.
+	 *
+	 *  @param client_socket The socket where the new client is.
+	 *  @param con The almighty controller.
+	 */
 
 	public Connection (Socket client_socket, Controller con) {
 
 		client=client_socket;
-          	conn=con; 
+		conn=con; 
 
-                // Log where the connection is coming from. 
+		// Log where the connection is coming from. 
 
 		Server.log ("[Connection] New connection from " + client.getInetAddress().getHostName() + " (" + client.getInetAddress().getHostAddress() + ")" );
 
 		try {
-
-			in = new DataInputStream (client.getInputStream() );
+		
+			in = new BufferedReader( new InputStreamReader (client.getInputStream()) );
 			out= new PrintStream     (client.getOutputStream() );
+	        		 
+	        	//	 new InputStreamReader(in));
 
 		}
 
@@ -99,66 +101,66 @@ public class Connection extends Thread {
 	}
 
 	/** Provide the service to the client. Queues stuff for the controller if it 
-         *  needs to deal with anything.
-         */
+	 *  needs to deal with anything.
+	 */
 
-        public void run() {
+	public void run() {
 
-               String line;
+		String line;
 
 		conn.AddToQueue ( new queue_user (this) ) ;  // Pass whole user stuff.
 		synchronized (conn) {conn.notify();}         // We can't let the user hang there waiting.
 
-               try {
+		try {
 
-                       for (;;) {
+			for (;;) {
 
-                               line = in.readLine();
-                           
-			       if (line==null) { 
+				line = in.readLine();
 
-				   // Our connection has been pulled from underneath us.
-                                   // Log the fact and exit the thread.
+				if (line==null) { 
 
-				   if ( play.getStatus() > 1 ) {
+					// Our connection has been pulled from underneath us.
+					// Log the fact and exit the thread.
 
-					// They are a registered player etc.
+					if ( play.getStatus() > 1 ) {
 
-			           	Server.log ("[Connection] Connection reset by " + play.getName() );
-				   	conn.AddToQueue ( new queue_lost (this.play) ) ;
-				   	synchronized (conn) {conn.notify();}
+						// They are a registered player etc.
 
-				    } else {
+						Server.log ("[Connection] Connection reset by " + play.getName() );
+						conn.AddToQueue ( new queue_lost (this.play) ) ;
+						synchronized (conn) {conn.notify();}
 
-					// Not yet registered, so don't bother telling controller. It doesn't care.
+					} else {
 
-					Server.log ("[Connection] Unregistered connection lost");
+						// Not yet registered, so don't bother telling controller. It doesn't care.
 
-				    }	
+						Server.log ("[Connection] Unregistered connection lost");
 
-				    break;
+					}	
 
-		               }			
-		
+					break;
+
+				}			
+
 				// Test if we can add stuff to event loop queue
 
 				conn.AddToQueue ( new queue_line (play, line) );       
 
-                               synchronized (conn) {conn.notify();}    // Testing!
+				synchronized (conn) {conn.notify();}    // Testing!
 
-                       }
+			}
 
-               }
+		}
 
-               catch (IOException e) {
+		catch (IOException e) {
 
 
 			Server.log ("Exception while reading.");
 
 		}
 
-        }
+	}
 
 }
-				
-			
+
+

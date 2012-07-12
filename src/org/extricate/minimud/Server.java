@@ -2,7 +2,9 @@ package org.extricate.minimud;
 
 import java.io.*;
 import java.net.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.SimpleTimeZone;
 
 /**
  *  A very basic MUD (Multi User Dungeon) server, designed to be
@@ -58,7 +60,12 @@ public class Server extends Thread {
 	public static void log (String text) {
 
 		Date cur_date = new Date();
-		System.out.println ("[" + cur_date.toGMTString() + "] " + text);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat();
+		sdf.setTimeZone(new SimpleTimeZone(0, "GMT"));
+		sdf.applyPattern("dd MMM yyyy HH:mm:ss z");
+		
+		System.out.println ("[" + sdf.format(cur_date) + "] " + text);
 
 	}
 

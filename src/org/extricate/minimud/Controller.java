@@ -89,15 +89,13 @@ public class Controller extends Thread {
 			File f = new File (Server.DATA_PATH + "objects");
 
 			FileInputStream in = new FileInputStream (f);
-			DataInputStream dis = new DataInputStream (in);
-
+			BufferedReader dis = new BufferedReader ( new InputStreamReader (in));
+			
 			while (true) {
 
 				kw = new String ( dis.readLine() );     // Object keyword
 				desc = new String ( dis.readLine() );   // Object room description	
 				l = new String ( dis.readLine() ) ;     // Location number
-
-				//Server.log ("kw: " + kw + " desc: " + desc + " l: " + l );
 
 				// But we have l as a String. It must be an integer
 

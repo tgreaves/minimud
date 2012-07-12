@@ -206,9 +206,6 @@ public class Player {
 			FileInputStream in = new FileInputStream (f);
 			DataInputStream dis = new DataInputStream (in);
 
-			int size = (int) f.length();   // Get file length.
-			
-
 			// First four lines contain movement data
 
 			north = new String (dis.readLine()); 
