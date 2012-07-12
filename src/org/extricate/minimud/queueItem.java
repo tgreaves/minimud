@@ -1,4 +1,4 @@
-package minimud;
+package org.extricate.minimud;
 
 /** The basic structure behind an item that is stored in the minimud queue
  *  for the controller. All items will be an extension of this, so the

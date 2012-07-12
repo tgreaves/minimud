@@ -1,4 +1,4 @@
-package minimud;
+package org.extricate.minimud;
 
 import java.util.*;
 
