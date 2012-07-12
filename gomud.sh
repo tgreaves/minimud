@@ -1,3 +1,3 @@
 #!/bin/sh
 # Runs the minimud.
-java minimud.Server
+java org.extricate.minimud.Server
