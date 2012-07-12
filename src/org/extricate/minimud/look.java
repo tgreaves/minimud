@@ -1,6 +1,5 @@
 package org.extricate.minimud;
 
-import java.io.*;
 import java.util.*;
 
 /** Gives the player a description of their current location */

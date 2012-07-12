@@ -1,6 +1,5 @@
 package org.extricate.minimud;
 
-import java.io.*;
 import java.util.*;
 
 /** Tells the player who is currently playing the MUD */
@@ -13,7 +12,7 @@ public class who extends mudcommand {
 
 	public void call(Controller con, Player p, StringTokenizer str) {
 
-		Vector players_list;
+		Vector<?> players_list;
 		int i;
 
 		players_list = con.getPlayers();

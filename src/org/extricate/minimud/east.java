@@ -1,6 +1,5 @@
 package org.extricate.minimud;
 
-import java.io.*;
 import java.util.*;
 
 /** Class to handle a player wishing to move east */

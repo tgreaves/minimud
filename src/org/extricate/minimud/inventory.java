@@ -1,6 +1,5 @@
 package org.extricate.minimud;
 
-import java.io.*;
 import java.util.*;
 
 /** Gives a player a listing of their current inventory */
@@ -12,7 +11,7 @@ public class inventory extends mudcommand {
 	public void call(Controller con, Player p, StringTokenizer str) {
 
 		int i;
-		Vector objs = p.getObjects();
+		Vector<?> objs = p.getObjects();
 		
 		if ( objs.size() == 0 ) {
 

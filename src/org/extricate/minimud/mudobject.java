@@ -1,7 +1,5 @@
 package org.extricate.minimud;
 
-import java.util.*;
-
 /** The basic class for all the objects on the MiniMUD. These are set-up
  *  when loaded when the MUD initialises.
  */

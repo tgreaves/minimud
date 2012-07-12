@@ -1,6 +1,5 @@
 package org.extricate.minimud;
 
-import java.io.*;
 import java.util.*;
 
 /** "Shouts" a message to all the players on the MUD. */

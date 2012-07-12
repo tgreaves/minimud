@@ -1,6 +1,5 @@
 package org.extricate.minimud;
 
-import java.lang.*;
 import java.io.*;
 import java.util.*;
 
@@ -18,13 +17,13 @@ public class Controller extends Thread {
 	 *  with them.
 	 */
 
-	protected Vector queue;
+	protected Vector<Object> queue;
 
 	/** The list of players in the MUD, filled with Player objects. */
-	protected Vector players_list; 
+	protected Vector<Player> players_list; 
 
 	/** The list of objects in the MUD, filled with mudobjects */
-	protected Vector mud_objects;
+	protected Vector<mudobject> mud_objects;
 
 	/** Adds a single object to the Minimud Events Queue 
 	 *
@@ -39,14 +38,14 @@ public class Controller extends Thread {
 
 	/** Returns the list of players in the MUD */
 
-	public Vector getPlayers () {
+	public Vector<Player> getPlayers () {
 
 		return this.players_list;
 	}
 
 	/** Returns the list of objects in the MUD */
 
-	public Vector getmud_objects () {
+	public Vector<mudobject> getmud_objects () {
 
 		return this.mud_objects;
 
@@ -69,9 +68,9 @@ public class Controller extends Thread {
 
 	public Controller () {
 
-		queue        = new Vector();   // Our events queue
-	 	players_list = new Vector();   // Our players list 	
-		mud_objects  = new Vector();   // Our objects list
+		queue        = new Vector<Object>();   // Our events queue
+	 	players_list = new Vector<Player>();   // Our players list 	
+		mud_objects  = new Vector<mudobject>();   // Our objects list
 
 		String kw, desc, l;
 		int obj_count=0;
@@ -254,7 +253,7 @@ public class Controller extends Thread {
 
 				Server.log ("[Command] " + p.getName() + ": " + s) ; 
 				String comm;
-				Class test;
+				Class<?> test;
 				mudcommand command = new mudcommand();
 				StringTokenizer com;
 
@@ -275,7 +274,7 @@ public class Controller extends Thread {
 
 				try {
 
-					test = Class.forName ("minimud."+comm.toLowerCase()); 
+					test = Class.forName ("org.extricate.minimud."+comm.toLowerCase()); 
 				
 				}
 

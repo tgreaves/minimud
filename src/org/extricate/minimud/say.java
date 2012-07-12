@@ -1,6 +1,5 @@
 package org.extricate.minimud;
 
-import java.io.*;
 import java.util.*;
 
 /** Says something to all players in the same room. */
@@ -13,7 +12,7 @@ public class say extends mudcommand {
 
 	public void call(Controller con, Player p, StringTokenizer str) {
 
-		Vector players_list;
+		Vector<?> players_list;
 		int i;
 		String temp=new String();
 

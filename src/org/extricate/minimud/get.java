@@ -1,6 +1,5 @@
 package org.extricate.minimud;
 
-import java.io.*;
 import java.util.*;
 
 /** Allows a player to pick up a mud object which is in the room */
@@ -11,7 +10,7 @@ public class get extends mudcommand {
 
 	public void call(Controller con, Player p, StringTokenizer str) {
 
-		Vector mud_objects;
+		Vector<?> mud_objects;
 		int i;
 		int found=-1;
 		String temp=new String();

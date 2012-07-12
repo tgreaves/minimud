@@ -33,7 +33,7 @@ public class Player {
 	protected int location;
 
 	/** Objects in inventory. */
-	protected Vector objects_carried;
+	protected Vector<mudobject> objects_carried;
 
 	/** Temporary storage for valid directions. This saves us having
 	 *  to reload the location data to check the validity of a players
@@ -58,7 +58,7 @@ public class Player {
 	
 		this.con = x;
 		status=0;
-		objects_carried = new Vector();
+		objects_carried = new Vector<mudobject>();
 
 	}
 
@@ -131,7 +131,7 @@ public class Player {
 
 	/** Returns the objects carried. */
 
-	public Vector getObjects() {
+	public Vector<mudobject> getObjects() {
 
 		return this.objects_carried;
 
@@ -195,9 +195,8 @@ public class Player {
 		try {
 
 			String north, east, south, west;
-			Vector players_list, mud_objects;
+			Vector<?> players_list, mud_objects;
 			int temp=0;
-			int bytes_read=0;
 			int i;
 
 			players_list = con.getPlayers();
@@ -208,7 +207,7 @@ public class Player {
 			DataInputStream dis = new DataInputStream (in);
 
 			int size = (int) f.length();   // Get file length.
-			byte[] data = new byte[size];
+			
 
 			// First four lines contain movement data
 

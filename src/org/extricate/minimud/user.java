@@ -1,6 +1,5 @@
 package org.extricate.minimud;
 
-import java.io.*;
 import java.util.*;
 
 /** Allows the user to change their name */
@@ -25,7 +24,7 @@ public class user extends mudcommand {
 
 			int i;
                         int p_found=0;
-			Vector players_list;
+			Vector<?> players_list;
 			String s;
 
 			players_list = con.getPlayers(); 

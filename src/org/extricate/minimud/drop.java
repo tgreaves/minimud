@@ -1,6 +1,5 @@
 package org.extricate.minimud;
 
-import java.io.*;
 import java.util.*;
 
 /** Allows a player to drop a mud object in their room */
@@ -11,8 +10,8 @@ public class drop extends mudcommand {
 
 	public void call(Controller con, Player p, StringTokenizer str) {
 
-		Vector mud_objects;
-		Vector objs;
+		Vector<mudobject> mud_objects;
+		Vector<?> objs;
 		int i;
 		int found=-1;
 		String temp=new String();
