@@ -111,10 +111,8 @@ public class Server extends Thread {
 		try {
 
 			while (true) {
-
 				Socket client_socket = our_socket.accept();
-				Connection c = new Connection (client_socket, con);
-
+				new Connection (client_socket, con);
 			}
 
 		}

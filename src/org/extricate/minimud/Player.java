@@ -204,7 +204,7 @@ public class Player {
 
 			File f = new File (Server.DATA_PATH + "rooms/" + l + ".exits");
 			FileInputStream in = new FileInputStream (f);
-			DataInputStream dis = new DataInputStream (in);
+			BufferedReader dis = new BufferedReader( new InputStreamReader (new DataInputStream(in) ));
 
 			// First four lines contain movement data
 

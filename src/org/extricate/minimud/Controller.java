@@ -83,14 +83,16 @@ public class Controller extends Thread {
 		// is fine with us - the MUD simply won't have any objects.
 
 		Server.log ("[Controller] Parsing objects data file.");
-
+		BufferedReader dis;
+		
 		try {
 
 			File f = new File (Server.DATA_PATH + "objects");
 
 			FileInputStream in = new FileInputStream (f);
-			BufferedReader dis = new BufferedReader ( new InputStreamReader (in));
+			dis = new BufferedReader ( new InputStreamReader (in));
 			
+			// FIXME: The way this loops via true is not appropriate.
 			while (true) {
 
 				kw = new String ( dis.readLine() );     // Object keyword
@@ -113,7 +115,7 @@ public class Controller extends Thread {
 		}
 
 		catch ( IOException e ) {
-
+			
  		}
 
 		catch ( NullPointerException e2) {
@@ -122,6 +124,7 @@ public class Controller extends Thread {
 
 		Server.log ("[Controller] " + obj_count +" objects loaded.");
 
+		
 		this.start();
 
 	}

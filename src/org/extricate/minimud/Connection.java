@@ -27,6 +27,9 @@ public class Connection extends Thread {
 
 	/** The Player class associated with the connection */
 	public Player play;
+	
+	/** Whether this Thread is considered active or not */
+	protected boolean threadActive;
 
 	/** Send the contents of stuff[] to the player's terminal.
 	 *
@@ -47,7 +50,7 @@ public class Connection extends Thread {
 		try {
 
 			client.close();
-			this.stop();
+			threadActive = false;
 
 		}
 
@@ -75,9 +78,7 @@ public class Connection extends Thread {
 		
 			in = new BufferedReader( new InputStreamReader (client.getInputStream()) );
 			out= new PrintStream     (client.getOutputStream() );
-	        		 
-	        	//	 new InputStreamReader(in));
-
+	        		
 		}
 
 		catch (IOException e) {
@@ -96,6 +97,7 @@ public class Connection extends Thread {
 
 		}
 
+		threadActive = true;
 		this.start();
 
 	}
@@ -113,7 +115,7 @@ public class Connection extends Thread {
 
 		try {
 
-			for (;;) {
+			while (threadActive) {
 
 				line = in.readLine();
 
